@@ -61,20 +61,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-DATABASE = {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'd22ofohhnchun5',
-    'USER': 'bqxhhvamaedofo',
-    'PASSWORD': 'be48fc2734fc817a31dfdda7a26fba3c9943a3bacd537bdea3fe904c4467d361',
-    'HOST': 'ec2-34-247-151-118.eu-west-1.compute.amazonaws.com',
-    'PORT': '5432',
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+
+# DATABASE = {
+#     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#     'NAME': 'd22ofohhnchun5',
+#     'USER': 'bqxhhvamaedofo',
+#     'PASSWORD': 'be48fc2734fc817a31dfdda7a26fba3c9943a3bacd537bdea3fe904c4467d361',
+#     'HOST': 'ec2-34-247-151-118.eu-west-1.compute.amazonaws.com',
+#     'PORT': '5432',
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
