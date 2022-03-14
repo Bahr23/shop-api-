@@ -55,7 +55,7 @@ pi==0.1.2
 pickleshare==0.7.5
 Pillow==8.1.0
 pipenv==2022.1.8
-pony==0.7.13
+pony
 portend==2.6
 poyo==0.5.0
 prompt-toolkit==3.0.24
