@@ -1,1 +1,1 @@
-web: gunicorn gettingstarted.wsgi
+web: gunicorn shop-django-rest-framework.wsgi --log-file -
