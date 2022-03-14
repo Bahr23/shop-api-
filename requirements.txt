@@ -29,3 +29,4 @@ dj-config-url==0.1.1
 ruamel.yaml.clib==0.2.6
 psycopg2
 gunicorn
+dj_database_url
