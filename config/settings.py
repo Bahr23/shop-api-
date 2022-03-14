@@ -2,6 +2,7 @@ import re
 from pathlib import Path
 from datetime import timedelta
 import os
+import dj_database_url
 # from .config import SMTP, EMAIL, PASSWORD
 from urllib.parse import urlparse
 
@@ -27,6 +28,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'api.apps.ApiConfig',
     'drf_yasg',
+    'whitenoise.runserver_nostatic',
     'contactus',
 ]
 
@@ -39,7 +41,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'config.urls'
 
@@ -68,8 +73,7 @@ DATABASES = {
     }
 }
 
-import dj_database_url
-db_from_env = dj_database_url.config()
+db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
 # DATABASE = {
