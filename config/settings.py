@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
-    'api',
+    'api.apps.ApiConfig',
     'drf_yasg',
     'whitenoise.runserver_nostatic',
     'contactus',
