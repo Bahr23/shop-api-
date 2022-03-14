@@ -1,8 +1,8 @@
 from rest_framework import viewsets, permissions, generics, status
-from .models import Product, Category, CartItem
+from .models import Product, Category, CartItem, Shop
 from .serializers import (
     ProductSerializer, CategorySerializer, CartItemSerializer, UserSerializer,
-    CartItemAddSerializer)
+    CartItemAddSerializer, ShopSerializer)
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
@@ -26,6 +26,15 @@ class ProductView(viewsets.ModelViewSet):
         permissions.IsAdminUser, permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'description', 'category__name']
+
+
+class ShopView(viewsets.ModelViewSet):
+    queryset = Shop.objects.all()
+    serializer_class = ShopSerializer
+    permission_classes = [
+        permissions.IsAdminUser, permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'user']
 
 
 class UserView(viewsets.ModelViewSet):

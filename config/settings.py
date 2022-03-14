@@ -1,7 +1,7 @@
 from pathlib import Path
 from datetime import timedelta
 import os
-from .config import SMTP, EMAIL, PASSWORD
+# from .config import SMTP, EMAIL, PASSWORD
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -114,11 +114,11 @@ SIMPLE_JWT = {
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = SMTP
-EMAIL_PORT = 587
-EMAIL_HOST_USER = EMAIL
-EMAIL_HOST_PASSWORD = PASSWORD
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = SMTP
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = EMAIL
+# EMAIL_HOST_PASSWORD = PASSWORD
 
 SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': False,

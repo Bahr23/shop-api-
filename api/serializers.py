@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Category, CartItem
+from .models import Product, Category, CartItem, Shop
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
@@ -21,7 +21,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     serializer for products that serialize:
     (id', 'url', "name", "slug", "category", "price", "discount", "available",
     "quantity", "created", "image", "description")
-    and add relation to category serializer \nbased on Product model
+    and add relation to category serializer based on Product model
 
     """
 
@@ -31,7 +31,20 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         model = Product
         fields = (
             'id', 'url', "name", "slug", "category", "price", "discount",
-            "available", "quantity", "created", "image", "description")
+            "available", "quantity", "created", "image", "shop", "description")
+
+
+class ShopSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    serializer for shops that serialize:
+    ('id', 'url', "name", "available", "created", "description")
+    """
+
+    # category = CategorySerializer(many=True)
+
+    class Meta:
+        model = Shop
+        fields = ('id', 'url', "name", "is_available", "created", "description")
 
 
 class UserSerializer(serializers.ModelSerializer):

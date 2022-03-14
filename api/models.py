@@ -23,6 +23,7 @@ def get_superuser():
 class Category(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
+    parent_category = models.ForeignKey('self', on_delete=models.CASCADE, default=None, null=True, blank=True)
     is_lux = models.BooleanField(default=False)
 
     class Meta:
@@ -39,6 +40,18 @@ class AvailableManager(models.Manager):
         return super(AvailableManager, self).get_queryset().filter(is_available=True, quantity__gte=1)
 
 
+class Shop(models.Model):
+    name = models.CharField(max_length=150, unique=True, null=False, blank=False)
+    slug = models.SlugField(unique=True, null=False, blank=False)
+    is_available = models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.SET(get_superuser))
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     name = models.CharField(max_length=150, unique=True, null=False, blank=False)
     slug = models.SlugField(unique=True, null=False, blank=False)
@@ -51,6 +64,7 @@ class Product(models.Model):
     available = AvailableManager()
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.SET(get_superuser))
+    shop = models.ForeignKey(Shop, on_delete=models.SET(get_superuser), null=False, blank=False)
     image = models.ImageField(upload_to=product_image)
     description = models.TextField()
 

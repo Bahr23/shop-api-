@@ -4,6 +4,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register('product', views.ProductView)
+router.register('shop', views.ShopView)
 router.register('user', views.UserView)
 router.register('category', views.CategoryView)
 
